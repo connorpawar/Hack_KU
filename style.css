@@ -5,13 +5,54 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+input::-webkit-input-placeholder {
+color: white !important;
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+color: white !important;  
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: white !important;  
+}
+ 
+input:-ms-input-placeholder {  
+color: white !important;  
+}
+
+html {
+width: 100%;
+height: 100%;
+clip: auto;
+position: absolute;
+overflow: hidden;
+}
+
 iframe {
 	border: none;
 }
 
+@font-face {
+font-family: Gotham;
+src: url('/~c011p976/Resources/Gotham-Black.ttf');
+}
+
+body {
+    /* The image used */
+    background-image: url('/~c011p976/Resources/lil_boy.png');
+
+    /* Full height */
+    background-size: 50px 50px; 
+
+    /* Center and scale the image nicely */
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
 .main-container {
 	min-height: 100vh;
-	background: linear-gradient(75deg, rgba(132, 189, 0, 2), rgba(130, 130, 130, 0.53));
+	background: white;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
