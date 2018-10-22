@@ -1,5 +1,4 @@
-# kcFedCode
-kcFED Code-A-Thon 2018
+# kcFED Code-A-Thon 2018
 Project Description:
 
 Working within the theme of "Don't Make Me Think", our team has developed a program with the intent of providing the most frictionless and responsive experience for the end user as we can. Our project, Consolidate, is a website intended to be saved as the user's homepage providing easy access to many of the utilities they require during regular web browsing in one place. Our program provides a centralized hub for the user utilizing publicly available widgets that access specific APIs to perform various tasks. Users are provided with customizable tiles that can be easily added/deleted, resized, and moved with simple, intuitive commands. The design of our interface reflects a minimalist approach that is meant to produce a homepage that is both aesthetically pleasing and functional.
