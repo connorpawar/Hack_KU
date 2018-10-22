@@ -1,39 +1,236 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Randify</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="icon" href='/~c011p976/Resources/logo.png'/>
-	<img src='/~c011p976/Resources/randify_2.png'>
-</head>
-<body>
-	<main class="main-container">
-		<section>
-			<center>
-			<font face="Gotham", color="#003399">
-			<b>
-				<p>Enter artists as comma–separated list</p>
-				<p>Randify will create a playlist based on your criteria</p>
-				<div class="form">
-					<form action="">
-						<input placeholder="Type here..." type="search" value="" style="background-color:#003399; color:White">
-						<input type="submit" value="Create" style="background-color:#003399; color:White; border-color:#003399">
-					</form>
-				</div>
-				<p>Hack KU</p>
-				<p>Alex, Carter, Connor, and Jacob</p>
-				<div class="playlist">
-					<div class="loader">
-						<div class="inner-circle"></div>
-					</div>
-				</div>
-				</b>
-				</font>
-			</center>
-		</section>
-	</main>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="script.js"></script>
-</body>
+<!doctype html>
+<html ng-app>
+
+   <head class='stayup'>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+      <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+      <!--Import Files to use JQuery Masonry - Packery library.-->
+      <script src="https://unpkg.com/packery@2/dist/packery.pkgd.js"></script>
+
+      <!--Import Files to use draggabilly-->
+      <script src="https://unpkg.com/draggabilly@2/dist/draggabilly.pkgd.min.js"></script>
+      <link href="style.css" rel="stylesheet" type="text/css">
+
+      <nav class="searchBar" style="width: 100%;">
+        <center>
+          <button class="Hamburger" onClick="ShowHide('sideMenu');"></button>
+          <form method="get" action="http://www.google.com/search" autocomplete="off">
+            <input type="text"   name="q" size="25" maxlength="255" value="" placeholder="Google Search..."/>
+          </form>
+        </center>
+      </nav>
+  </head>
+
+   <body onresize="pckry.layout();">
+      <center>
+        <div class='sideMenu' id="sideMenu">
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              Spotify
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('Spotify')" checked id="SpotifyToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              Clock
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('Clock')" checked id="ClockToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              SoundCloud
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('SoundCloud')" checked id="SoundCloudToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              Twitter
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('Twitter')" checked id="TwitterToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              YouTube
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('YouTube')" checked id="YouTubeToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              Map
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('Map')" checked id="MapToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              Calendar
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('Calendar')" checked id="CalendarToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sideMenuButton">
+            <div class="sideMenuText">
+              Stitcher Radio
+            </div>
+            <div class="sideMenuInput">
+              <label class="switch">
+                <input type="checkbox" onChange="Toggle('Stitcher')" checked id="StitcherToggle">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class='addWidget'>
+            <form method='get' onsubmit="CreateNewWidget()" id="CreateNewWidget" autocomplete="off">
+              <input type="text"   name="q" size="25" value="" placeholder="Paste URL to add window"/>
+            </form>
+          </div>
+        </div>
+
+      <div>
+        <div class="grid" style="padding: 5%">
+            <center>
+
+              <div class="gutter-sizer"></div>
+              <div class="grid-sizer"></div>
+
+              <div class="grid-item grid-item-2x1" style="background: #000;" id="SpotifyCard">
+              <div class="ribbon">
+              </div>
+                  <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
+                          width=100% height=95% frameborder="0" allowtransparency="true"
+                          allow="encrypted-media"
+                            style="padding: 15px;
+                                   padding-top: 0px;
+                                   border-radius: 10px;">
+                  </iframe>
+              </div>
+
+              <div class="grid-item grid-item-small" id='ClockCard'>
+                <div class="ribbon">
+                </div style="padding-top: 20px">
+                <iframe scrolling="no" frameborder="no" clocktype=\"html5\"
+                        style="overflow:hidden;
+                               border:0;
+                               margin:0;
+                               padding:0;
+                               width:100%;
+                               height:100%;"
+                        src="https://www.clocklink.com/clocks/HTML5/html5-world.html?Chicago&Tokyo&New_York&480&gray">
+                </iframe>
+              </div>
+
+              <div class="grid-item grid-item-large" id="TwitterCard">
+                  <div class="ribbon">
+                  </div>
+                  <div style="overflow-y: scroll;
+                              width: 100%;
+                              height: 90%">
+                  <a class="twitter-timeline"
+                     href="https://twitter.com/cnnbrk?ref_src=twsrc%5Etfw">
+                        Tweets by cnnbrk
+                  </a>
+                  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+              </div>
+
+            <div class="grid-item grid-item-large" id="SoundCloudCard">
+              <div class="ribbon">
+              </div>
+              <iframe width="100%" height=95% scrolling="no" frameborder="no" allow="autoplay"
+                      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/371180234&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+              </iframe>
+            </div>
+
+            <div class="grid-item grid-item-small" id="YouTubeCard">
+              <div class="ribbon">
+              </div>
+              <iframe width=100% height=90%
+                      src="https://www.youtube.com/embed/rjKyHNtJKNk" frameborder="0"
+                      allow="autoplay; encrypted-media" allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="grid-item grid-item-large" id="MapCard">
+              <div class="ribbon">
+              </div>
+              <div class="mapouter" style="width:100%;
+                                           height:95%">
+                  <div class="gmap_canvas" style="width:100%;
+                                                  height:100%">
+                      <iframe width=100% height=100% id="gmap_canvas"
+                              src="https://maps.google.com/maps?q=university%20of%20kansas&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                              frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                      </iframe>
+                      <a href="https://www.pureblack.de"></a>
+                  </div>
+                  <style>.mapouter{text-align:right;}.gmap_canvas {overflow:hidden;background:none!important;}</style>
+              </div>
+            </div>
+
+            <div class="grid-item grid-item-medium" id="StitcherCard">
+              <div class="ribbon">
+              </div>
+              <iframe  src="https://app.stitcher.com/splayer/f/4903/56825636"
+                       width="100%" height="90%" frameborder="0" scrolling="no">
+              </iframe>
+            </div>
+
+            <div class="grid-item grid-item-2x1" id="CalendarCard">
+              <div class="ribbon">
+              </div>
+              <iframe src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FChicago"
+                      style="border: 0" width="100%" height="95%" frameborder="0" scrolling="no">
+              </iframe>
+            </div></center>
+      </div>
+    </div>
+      <script src="Packery.js"></script>
+      <script src="draggabilly.js"></script>
+   </body>
+   <script src="Packery.js"></script>
 </html>
